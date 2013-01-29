@@ -1,9 +1,18 @@
 ---
 layout: default
+type  : post
+sidebar : true
 ---
+{% include config %}
 
-<div id="post">
-  <h1>{{ page.title }}</h1>
-  <time datetime="2012-05-27">{{ page.date | date: "%d %B %Y" }}</time>
+{% if page.no_format == true %}
   {{ content }}
-</div>
+{% else %}
+<article>
+  {% include partials/headline %}
+  {{ content }}
+  {% include partials/lists/pagination %}
+  {% include partials/comments %}
+</article>
+{% include partials/sidebar %}
+{% endif %}

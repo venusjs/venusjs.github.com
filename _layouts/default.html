@@ -15,37 +15,28 @@
   </head>
   <body>
 
-      <header>
-        <h1>Venus.js</h1>
-        <p>Test your code.</p>
-      </header>
-
-      <div id="banner">
-        <span id="logo"></span>
-      </div><!-- end banner -->
-
-    <div class="wrapper">
-      <nav>
-        <ul>
-        </ul>
+    <header>
+      <nav class="content">
+        <a class="logo">Venus.js</a>
       </nav>
-      <section>
-        {{ content }}
-      </section>
-      <footer>
-        <p class="small">Copyright 2012 <a href="/about">LinkedIn</a>.</p>
-      </footer>
-    </div>
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-36360221-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+    </header>
 
+    <section class="content">
+        {{ content }}
+    </section>
+    <footer class="content">
+      <p class="small">Copyright 2013 <a href="http://linkedin.github.com/">LinkedIn</a>.</p>
+    </footer>
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-36360221-1");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
   </body>
 </html>

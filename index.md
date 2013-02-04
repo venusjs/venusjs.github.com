@@ -22,12 +22,11 @@ The main benefits of Venus:
 
 3. Install Venus: `npm install -g venus`
 
-4. Add `venus/bin` to your $PATH
+To verify Venus is up and running, run the following example unit test from your terminal:
 
-To verify Venus is up and running, run the following example unit test:
-<pre>
-venus run --test venus/examples/01-SimpleMochaTest/specs/Greeter.spec.js --phantom
-</pre>
+```
+venus demo
+```
 
 # Getting Started 
 
@@ -88,4 +87,4 @@ venus run --test path/to/unit/test/foo.spec.js
 </pre>
 
 # Contributor Guide
-Feel free to create new issues and submit pull requests for Venus
+Feel free to create new issues and submit pull requests for Venus. Please adhere to our <a href="https://github.com/venusjs/venus/blob/master/CONTRIBUTING.md">contribution guidelines</a>.

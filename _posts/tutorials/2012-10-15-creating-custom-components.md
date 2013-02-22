@@ -2,7 +2,7 @@
 layout    : post
 title     : Creating Custom Components
 category  : tutorials
-tags      : [intro, styleguide, components, extend, ]
+tags      : [intro, styleguide, components, extend]
 summary   : In this guide, we'll cover how components work and introduce you to creating your own reusable components.
 description : SUMMARY
 author    : eoneill

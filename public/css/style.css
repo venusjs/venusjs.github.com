@@ -35,8 +35,9 @@ a:hover {
 
 code {
   display: inline-block;
-  background: #0f47a2;
-  color: #b2d0ff;
-  border: 1px solid #0062ff;
+  background: #333;
+  color: #aaa;
+  border: 1px solid #444;
   padding: 2px 5px;
+  font-family: monospace;
 }

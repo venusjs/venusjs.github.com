@@ -55,9 +55,9 @@ footer :
 pagination : false
 
 # API docs
-api_docs :
-  - {title: 'Module Methods', url: '/documentation/module/', summary : 'Explore the documentation for mixins and other module methods.' }
-  - {title: 'Native Methods', url: '/documentation/native/', summary : 'Learn about the native methods provided through the Sass function API.' }
+#api_docs :
+#  - {title: 'Module Methods', url: '/documentation/module/', summary : 'Explore the documentation for mixins and other module methods.' }
+#  - {title: 'Native Methods', url: '/documentation/native/', summary : 'Learn about the native methods provided through the Sass function API.' }
 
 # all links will be namespaced by BASE_PATH if defined
 BASE_PATH : false

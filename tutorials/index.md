@@ -1,6 +1,6 @@
 ---
 layout  : page
-title   : Tutorials
+title   : Getting Started
 header  : Getting Started
 group   : navigation
 weight  : 3

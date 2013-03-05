@@ -1,12 +1,21 @@
 ---
-layout  : page
-title   : Introducing Venus
+layout    : page
+title     : Introducing Venus
 ---
 {% include config %}
 
-## Organize and run your entire JS testing system with a single tool using Node.js
+<div id="intro">
+  <h1>Introducing Venus</h1>
 
-By eliminating repetitive tasks and friction points, Venus lets you focus on writing tests instead of running them. Already have JavaScript testing in place? Perfect! Venus is designed to orchestrate and automate existing tools like Mocha and Casper.
+  <h4>Organize and run your entire JS testing system with a single tool using Node.js</h4>
+
+  <p>By eliminating repetitive tasks and friction points, Venus lets you focus on writing tests instead of running them. Already have JavaScript testing in place? Perfect! Venus is designed to orchestrate and automate existing tools like Mocha and Casper.</p>
+
+  <div class="actions">
+    <button type="button">Download</button>
+    <button type="button">GitHub</button>
+  </div>
+</div>
 
 ## Quick Launch
 

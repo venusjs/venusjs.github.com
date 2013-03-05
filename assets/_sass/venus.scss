@@ -1,8 +1,16 @@
-#global-header {
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#global-header,
+#global-footer {
   background-color: #111;
+  padding: 10px 0;
+}
+
+#global-header {
   border-bottom: none;
   height: 38px;
-  padding: 10px 0;
 
   div {
     height: 48px;
@@ -48,4 +56,25 @@
 
 #main {
   /*width: 960px;*/
+}
+
+#global-footer {
+  border-top: 5px solid #7DAF42;
+  margin-top: 20px;
+
+  ul {
+    display: block;
+    margin-top: 14px;
+
+    li {
+
+      a {
+        color: #7DAF42;
+      }
+    }
+  }
+
+  .social-actions {
+    margin-top: 5px;
+  }
 }

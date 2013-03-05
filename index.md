@@ -1,5 +1,6 @@
 ---
 layout    : page
+no_layout : true
 title     : Introducing Venus
 ---
 {% include config %}
@@ -75,15 +76,15 @@ title     : Introducing Venus
   </div>
   <div class="feature">
     <h4>Tool integration</h4>
-    <p>Venus supports all your favorite tools, including VIM, SubLime, Eclipse, and more. No need to leave your IDE to run your tests.</p>
+    <p>Venus supports all your favorite tools, including Vim, Sublime Text, Eclipse and more. No need to leave your IDE to run your tests.</p>
   </div>
   <div class="feature">
     <h4>Advanced Configuration</h4>
-    <p>Complete control over test fixtures, test harness pages, and more.</p>
+    <p>Complete control over test fixtures, test harness pages and more.</p>
   </div>
   <div class="feature">
     <h4>Use with CI</h4>
-    <p>Seamless integration with Selenium Grid to execute tests against a full range of browsers during continuous integration. Also support Travis CI, a popular free CI tool for Open Source projects.</p>
+    <p>Seamless integration with Selenium Grid to execute tests against a full range of browsers during continuous integration. Also supports Travis CI, a popular free CI tool for Open Source projects.</p>
   </div>
 </div>
 

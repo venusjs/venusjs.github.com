@@ -5,7 +5,9 @@ GEM
       Platform (>= 0.4.0)
       open4
     Platform (0.4.0)
-    archetype (0.0.1.pre.1)
+    archetype (0.0.1.pre.3.55c4182)
+      compass
+      sass
     chunky_png (1.2.7)
     classifier (1.3.3)
       fast-stemmer (>= 1.0.0)
@@ -67,7 +69,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  archetype
+  archetype (= 0.0.1.pre.3.55c4182)
   compass
   foreman
   guard-jammit

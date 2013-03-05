@@ -232,3 +232,41 @@ body {
     }
   }
 }
+
+// Homepage - Features
+#features {
+  /*box-shadow: 0px 5px 14px #333;*/
+  /*background-color: #F3F3F3;*/
+  /*border-bottom: 3px solid #EEE;*/
+  /*padding: 30px 0 50px 0;*/
+  @include clearfix();
+  border-top: 3px solid #EEE;
+  padding: 30px 0;
+
+  h2 {
+    /*text-shadow: 2px 2px #FFF;*/  
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .feature {
+    float: left;
+    width: 25%;
+
+    h4 {
+      color: #7DAF42;
+      font-size: 17.5px;
+      font-weight: normal;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 20px;
+      padding-right: 15px;
+    }
+  }
+}

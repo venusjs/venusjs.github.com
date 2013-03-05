@@ -19,7 +19,7 @@ title     : Introducing Venus
 </div>
 
 <!-- Quick Launch -->
-<div id="quick-launch" class="block">
+<div id="quick-launch">
   <h2>Quick Launch</h2>
   <ul class="instructions">
     <li class="step active" data-step-number="1">
@@ -67,18 +67,25 @@ title     : Introducing Venus
 </div>
 
 <!-- Stellar Features -->
-## Stellar Features
-
-<dl>
-  <dt>CL Interface</dt>
-  <dd>Kick off tests from the command line.</dd>
-  <dt>Tool integration</dt>
-  <dd>Venus supports all your favorite tools, including VIM, SubLime, Eclipse, and more. No need to leave your IDE to run your tests.</dd>
-  <dt>Advanced Configuration</dt>
-  <dd>Complete control over test fixtures, test harness pages, and more.</dd>
-  <dt>Use with CI</dt>
-  <dd>Seamless integration with Selenium Grid to execute tests against a full range of browsers during continuous integration. Also support Travis CI, a popular free CI tool for Open Source projects.</dd>
-</dl>
+<div id="features">
+  <h2>Stellar Features</h2>
+  <div class="feature">
+    <h4>CL Interface</h4>
+    <p>Kick off tests from the command line. Quick and easy, no need to manually launch a browser.</p>
+  </div>
+  <div class="feature">
+    <h4>Tool integration</h4>
+    <p>Venus supports all your favorite tools, including VIM, SubLime, Eclipse, and more. No need to leave your IDE to run your tests.</p>
+  </div>
+  <div class="feature">
+    <h4>Advanced Configuration</h4>
+    <p>Complete control over test fixtures, test harness pages, and more.</p>
+  </div>
+  <div class="feature">
+    <h4>Use with CI</h4>
+    <p>Seamless integration with Selenium Grid to execute tests against a full range of browsers during continuous integration. Also support Travis CI, a popular free CI tool for Open Source projects.</p>
+  </div>
+</div>
 
 <!--
 Venus simplifies running unit tests for JavaScript. To minimize overhead, we set out to create a tool that makes it easier to work with an existing test library such as Mocha, Jasmine or QUnit.

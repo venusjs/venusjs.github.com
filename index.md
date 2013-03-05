@@ -4,6 +4,7 @@ title     : Introducing Venus
 ---
 {% include config %}
 
+<!-- Intro -->
 <div id="intro">
   <h1>Introducing Venus</h1>
 
@@ -17,14 +18,55 @@ title     : Introducing Venus
   </div>
 </div>
 
-## Quick Launch
+<!-- Quick Launch -->
+<div id="quick-launch" class="block">
+  <h2>Quick Launch</h2>
+  <ul class="instructions">
+    <li class="step active" data-step-number="1">
+      <a href="#command1">
+        <div class="step-number">1</div>
+        <p>Install Node.js</p>
+      </a>
+    </li>
+    <li class="step" data-step-number="2">
+      <a href="#command2">
+        <div class="step-number">2</div>
+        <p>Install PhantomJS</p>
+      </a>
+    </li>
+    <li class="step" data-step-number="3">
+      <a href="#command3">
+        <div class="step-number">3</div>
+        <p>Install Venus via NPM</p>
+      </a>
+    </li>                    
+    <li class="step" data-step-number="4">
+      <a href="#command4">
+        <div class="step-number">4</div>
+        <p>Add Venus to your $PATH</p>
+      </a>
+    </li>
+    <li class="step" data-step-number="5">
+      <a href="#command5">
+        <div class="step-number">5</div>
+        <p>Verify installation</p>
+      </a>
+    </li>
+  </ul>
+  <div class="terminal">
+    <p class="prompt">
+      [ Venus ~ ]
+      <span id="command1" class="command active" data-step-number="1">brew install node</span>
+      <span id="command2" class="command" data-step-number="2">brew install phantomjs</span>
+      <span id="command3" class="command" data-step-number="3">npm install -g venus</span>
+      <span id="command4" class="command" data-step-number="4">export PATH=path/to/venus/directory/bin/venus:$PATH</span>
+      <span id="command5" class="command" data-step-number="5">venus run --test path/to/venus/directory/examples/01-SimpleMochaTest/specs/Greeter.spec.js --phantom</span>
+    </p>
+    <img src="{{ ASSET_PATH }}/images/venus/terminal.png" alt="Terminal"> 
+  </div>
+</div>
 
-1. Install Node.js
-2. Install PhantomJS
-3. Install Venus via NPM
-4. Add Venus to your $PATH
-5. Verify installation
-
+<!-- Stellar Features -->
 ## Stellar Features
 
 <dl>

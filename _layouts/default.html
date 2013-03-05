@@ -6,6 +6,7 @@
 <!--[if gt IE 9]><!--><html class="no-js" lang="{{ site.lang }}"><!--<![endif]-->
 <head>
 {% include partials/head %}
+<link href="http://fonts.googleapis.com/css?family=Cabin:400,500,600,700" rel="stylesheet" type="text/css">
 {% include partials/scripts/jquery %}
 </head>
 {% capture page_classes %}{% if page.type %}layout-{{ page.type }}{% endif %}{% if page.sidebar or (page.type == 'post' and page.sidebar != false) %} has-aside{% endif %}{% if page.classname %} {{ page.classname }}{% endif %}{% endcapture %}
@@ -14,7 +15,9 @@
 {% include partials/scripts/classnames %}
 <header id="global-header">
   <div>
-    <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
+    <a class="logo" href="{{ HOME_PATH }}">
+      <img src="http://localhost/venus_landingpage/img/venus.png" alt="{{ site.title }}" />
+    </a>
     <nav>
       <ul>
         {% assign pages_list = site.pages %}

@@ -117,7 +117,7 @@ body {
   .actions {
     margin-top: 20px;
 
-    button {
+    .cta {
       @include background-image(linear-gradient(top, #62C462, #51A351));
       @include border-radius(6px);
       @include inline-block();
@@ -133,6 +133,7 @@ body {
       margin-right: 15px;
       padding: 11px 19px;
       text-align: center;
+      text-decoration: none;
       vertical-align: middle;
     }
   }

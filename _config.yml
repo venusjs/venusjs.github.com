@@ -43,8 +43,8 @@ archetype :
 lang      : en
 # git info
 git :
-  account : venusjs
-  repo    : venus
+  account : linkedin
+  repo    : venus.js
 # footer
 footer :
   links : 

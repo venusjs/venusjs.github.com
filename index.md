@@ -14,8 +14,8 @@ title     : Introducing Venus
   <p>By eliminating repetitive tasks and friction points, Venus lets you focus on writing tests instead of running them. Already have JavaScript testing in place? Perfect! Venus is designed to orchestrate and automate existing tools like Mocha and Casper.</p>
 
   <div class="actions">
-    <a class="cta" href="https://github.com/linkedin/venus.js/archive/master.zip">Download</a>
-    <a class="cta" href="https://github.com/linkedin/venus.js">GitHub</a>
+    <a class="cta" href="{{ GIT_PATH }}/archive/master.zip">Download</a>
+    <a class="cta" href="{{ GIT_PATH }}">GitHub</a>
   </div>
 </div>
 

@@ -1,0 +1,27 @@
+---
+layout  : page
+title   : Native Method APIs
+group   : documentation
+key     : doc-native
+---
+{% include config %}
+
+<script>
+(function($) {
+$(function() {
+  var $docFrame = $('#{{ page.key }}-frame'),
+      target = window.location.hash.replace('#', '');
+  // if there's a target on the hash, update the src
+  if(target) {
+    $docFrame.attr('src', 'rdoc/' + target);
+  }
+  function resizeFrame() {
+    $docFrame.height($docFrame.contents().find("html").height());
+  }
+  // resize the iframe and adjust the scrolling behavior
+  $docFrame.on('load', resizeFrame).on('resize', resizeFrame).css('overflow', 'hidden').attr('scrolling', 'no');
+});
+})(jQuery);
+</script>
+
+<iframe src="rdoc/" width="100%" scrolling="auto" height="500px" frameborder="0" allowtransparency="true" id="{{ page.key }}-frame"></iframe>

@@ -7,7 +7,7 @@ title     : Introducing Venus
 
 <!-- Intro -->
 <div id="intro">
-  <h1>Introducing Venus</h1>
+  <h1>Introducing Venus.js</h1>
 
   <h4>Organize and run your entire JS testing system with a single tool using Node.js</h4>
 

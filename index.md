@@ -1,7 +1,7 @@
 ---
 layout    : page
 no_layout : true
-title     : Introducing Venus
+title     : Introducing Venus.js
 ---
 {% include config %}
 

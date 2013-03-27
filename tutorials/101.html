@@ -27,83 +27,56 @@
   </header>
   <div id="main" role="main">
     <article>
-      <h1>Introducing Venus.js</h1>
+      <h1>Venus.js 101</h1>
       <hr>
-      <p><!-- Intro --></p>
-<div id="intro">
-  <h1>Introducing Venus.js</h1>
+      <p>Venus allows you to use comment-based annotations to define configurations for your unit test:</p>
+<ul>
+<li><h3>@venus-library</h3><p>Indicates the test library you wish to use. The test libraries that are currently supported are <code>mocha</code>, <code>jasmine</code> and <code>qunit</code> (Default library is Mocha)</p></li>
+<li><h3>@venus-include</h3><p>JavaScript file to include with your unit test. Use a seperate @venus-include annotation for every file you wish to include. The path is relative to the location of your test file.</p></li>
+<li><h3>@venus-fixture</h3><p>The location of the file that will include HTML on the test harness page. This is useful for including some DOM elements that your JavaScript control depends on, for example. The path is relative to the location of your test file.</p></li>
+<li><h3>@venus-template</h3><p>The location of the file that will serve as your test harness page for your unit test (Default file is <code>.venus/templates/default.tl</code>)</p></li>
+</ul>
+<h2>Creating a Unit Test</h2>
+<hr>
+<p>Let&#39;s say we have the following directory structure:</p>
+<pre><code class="lang-bash">|-foobar
+  |-src
+    |-foo.js
+  |-specs
+    |-foo.spec.js
+    |-foo.fixture.html</code></pre>
+<ul>
+<li><code>foo.js</code>      - Defines the talk() function</li>
+<li><code>foo.spec.js</code> - Unit test that validates the talk() function defined in <code>foo.js</code> behaves as expected</li>
+<li><code>foo.fixture.html</code> - HTML to be included when running the unit test defined in <code>foo.spec.js</code></li>
+</ul>
+<p>Below are the contents of <code>foo.spec.js</code></p>
+<pre><code class="lang-js">/**
+ * @venus-library mocha
+ * @venus-include ../src/foo.js
+ * @venus-fixture foo.fixture.html
+ */
 
-  <h4>Organize and run your entire JS testing system with a single tool using Node.js</h4>
+test(&#39;Foo&#39;, function() {
+  var foo    = new Foo(),
+      result = foo.talk(&#39;Hello %s, how are you doing this fine %s?&#39;, &#39;John&#39;, &#39;Monday&#39;);
 
-  <p>By eliminating repetitive tasks and friction points, Venus lets you focus on writing tests instead of running them. Already have JavaScript testing in place? Perfect! Venus is designed to orchestrate and automate existing tools like Mocha, Jasmine and QUnit.</p>
-
-  <div class="actions">
-    <a class="cta" href="http://www.github.com/linkedin/venus.js/archive/master.zip">Download</a>
-    <a class="cta" href="http://www.github.com/linkedin/venus.js">GitHub</a>
-  </div>
-</div>
-
-<p><!-- Quick Launch --></p>
-<div id="quick-launch">
-  <h2>Quick Launch</h2>
-  <ul class="instructions">
-    <li class="step active" data-step-number="1">
-      <a href="#command1">
-        <div class="step-number">1</div>
-        <p>Install Node.js</p>
-      </a>
-    </li>
-    <li class="step" data-step-number="2">
-      <a href="#command2">
-        <div class="step-number">2</div>
-        <p>Install PhantomJS</p>
-      </a>
-    </li>
-    <li class="step" data-step-number="3">
-      <a href="#command3">
-        <div class="step-number">3</div>
-        <p>Install Venus via NPM</p>
-      </a>
-    </li>
-    <li class="step" data-step-number="4">
-      <a href="#command4">
-        <div class="step-number">4</div>
-        <p>Verify installation</p>
-      </a>
-    </li>
-  </ul>
-  <div class="terminal">
-    <p class="prompt">
-      [ Venus ~ ]
-      <span id="command1" class="command active" data-step-number="1">brew install node</span>
-      <span id="command2" class="command" data-step-number="2">brew install phantomjs</span>
-      <span id="command3" class="command" data-step-number="3">npm install -g venus</span>
-      <span id="command4" class="command" data-step-number="4">venus demo</span>
-    </p>
-    <img src="/images/venus/terminal.png" alt="Terminal"> 
-  </div>
-</div>
-
-<p><!-- Stellar Features --></p>
-<div id="features">
-  <h2>Stellar Features</h2>
-  <div class="feature">
-    <h4>CL Interface</h4>
-    <p>Kick off tests from the command line. Quick and easy, no need to manually launch a browser.</p>
-  </div>
-  <!-- <div class="feature"> -->
-    <!-- <h4>Tool integration</h4> -->
-    <!-- <p>Venus supports all your favorite tools, including Vim, Sublime Text, Eclipse and more. No need to leave your IDE to run your tests.</p> -->
-  <!-- </div> -->
-  <div class="feature">
-    <h4>Advanced Configuration</h4>
-    <p>Complete control over test fixtures, test harness pages and more.</p>
-  </div>
-  <div class="feature">
-    <h4>Use with CI</h4>
-    <p>Seamless integration with Selenium Grid and Travis CI.</p>
-  </div>
-</div>
+  equal(result, &#39;Hello John, how are you doing this fine Monday?&#39;, &#39;Foo.talk() formats the string correctly&#39;);
+});</code></pre>
+<p>As you can see above, <code>foo.spec.js</code> does the following:</p>
+<ul>
+<li>Defines Mocha as it&#39;s test library</li>
+<li>Includes <code>foo.js</code> to instantiate a <code>Foo</code> object and invoke the talk() function</li>
+<li>Uses <code>foo.fixture.html</code> to specify HTML needed in order to run the unit test</li>
+</ul>
+<p><br/></p>
+<h2>Run a Unit Test</h2>
+<hr>
+<p>Unit tests can be run from the command line using PhantomJS or locally in a browser</p>
+<p>Run unit test with PhantomJS</p>
+<pre><code class="lang-bash">venus run --test path/to/unit/test/foo.spec.js --phantom</code></pre>
+<p>Run unit test locally</p>
+<pre><code class="lang-bash">venus run --test path/to/unit/test/foo.spec.js</code></pre>
 
   </article>
 </div>

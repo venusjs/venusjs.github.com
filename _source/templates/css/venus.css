@@ -259,3 +259,16 @@ pre code {
   background: #E4E9E2;
   margin: 10px;
 }
+
+#main article img {
+  max-width: 100%;
+}
+
+ul.tutorials li {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+ul.tutorials li:before {
+  content: '> ';
+}

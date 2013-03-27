@@ -27,83 +27,18 @@
   </header>
   <div id="main" role="main">
     <article>
-      <h1>Introducing Venus.js</h1>
+      <h1>How to debug failing tests</h1>
       <hr>
-      <p><!-- Intro --></p>
-<div id="intro">
-  <h1>Introducing Venus.js</h1>
-
-  <h4>Organize and run your entire JS testing system with a single tool using Node.js</h4>
-
-  <p>By eliminating repetitive tasks and friction points, Venus lets you focus on writing tests instead of running them. Already have JavaScript testing in place? Perfect! Venus is designed to orchestrate and automate existing tools like Mocha, Jasmine and QUnit.</p>
-
-  <div class="actions">
-    <a class="cta" href="http://www.github.com/linkedin/venus.js/archive/master.zip">Download</a>
-    <a class="cta" href="http://www.github.com/linkedin/venus.js">GitHub</a>
-  </div>
-</div>
-
-<p><!-- Quick Launch --></p>
-<div id="quick-launch">
-  <h2>Quick Launch</h2>
-  <ul class="instructions">
-    <li class="step active" data-step-number="1">
-      <a href="#command1">
-        <div class="step-number">1</div>
-        <p>Install Node.js</p>
-      </a>
-    </li>
-    <li class="step" data-step-number="2">
-      <a href="#command2">
-        <div class="step-number">2</div>
-        <p>Install PhantomJS</p>
-      </a>
-    </li>
-    <li class="step" data-step-number="3">
-      <a href="#command3">
-        <div class="step-number">3</div>
-        <p>Install Venus via NPM</p>
-      </a>
-    </li>
-    <li class="step" data-step-number="4">
-      <a href="#command4">
-        <div class="step-number">4</div>
-        <p>Verify installation</p>
-      </a>
-    </li>
-  </ul>
-  <div class="terminal">
-    <p class="prompt">
-      [ Venus ~ ]
-      <span id="command1" class="command active" data-step-number="1">brew install node</span>
-      <span id="command2" class="command" data-step-number="2">brew install phantomjs</span>
-      <span id="command3" class="command" data-step-number="3">npm install -g venus</span>
-      <span id="command4" class="command" data-step-number="4">venus demo</span>
-    </p>
-    <img src="/images/venus/terminal.png" alt="Terminal"> 
-  </div>
-</div>
-
-<p><!-- Stellar Features --></p>
-<div id="features">
-  <h2>Stellar Features</h2>
-  <div class="feature">
-    <h4>CL Interface</h4>
-    <p>Kick off tests from the command line. Quick and easy, no need to manually launch a browser.</p>
-  </div>
-  <!-- <div class="feature"> -->
-    <!-- <h4>Tool integration</h4> -->
-    <!-- <p>Venus supports all your favorite tools, including Vim, Sublime Text, Eclipse and more. No need to leave your IDE to run your tests.</p> -->
-  <!-- </div> -->
-  <div class="feature">
-    <h4>Advanced Configuration</h4>
-    <p>Complete control over test fixtures, test harness pages and more.</p>
-  </div>
-  <div class="feature">
-    <h4>Use with CI</h4>
-    <p>Seamless integration with Selenium Grid and Travis CI.</p>
-  </div>
-</div>
+      <p>Sometimes tests will give you a useful message explaining why they failed, but there are other times where they fail or hang without providing a clue of what is going on.</p>
+<p>When you are having this issue the best way to debug the issue is to open the test in your favorite browser.</p>
+<p><a href="/images/tutorials/debugging/image1.png"><img src="/images/tutorials/debugging/image1.png" alt="Test"></a></p>
+<p>There is more happening on the browser than what we see at first glance. If you take a look at the DOM you will see an iframe with a src attribute something like /venus-core/sandbox/1, and this is where all the action happens.
+In there you can see all the libraries being loaded for your test, the file you are testing and the test code.</p>
+<p><a href="/images/tutorials/debugging/image2.png"><img src="/images/tutorials/debugging/image2.png" alt="Test"></a></p>
+<p>If you don&#39;t see your script files being loaded, this is a good indicator that something is wrong with your test. This is an example of how the iframe looked on one test were I was triggering a redirect and by doing that breaking my tests:</p>
+<p><img src="/images/tutorials/debugging/image3.png" alt="Test"></p>
+<p>Knowing this is also useful to find out why a test is failing or something is not working as expected. Since you now have access to your JS files from your developer tools you can set break points and go through the code step by step to figure out why something is failing.</p>
+<p><a href="/images/tutorials/debugging/image4.png"><img src="/images/tutorials/debugging/image4.png" alt="Test"></a></p>
 
   </article>
 </div>

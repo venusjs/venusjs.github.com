@@ -6,4 +6,4 @@ Run the following command to run your tests with PhantomJS:
 $ venus run -t tests.js -n
 ```
 
-The command line option -n or --phantom [path to binary] will specify the test to run with PhantomJS
+The command line option -n or --phantom will specify the test to run with PhantomJS

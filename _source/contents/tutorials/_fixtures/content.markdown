@@ -1,17 +1,29 @@
-This tutorial deals with `@venus-fixture` which imports HTML markup into your test page, this gives you access to DOM nodes in your tests.
-
 * <h3>Why?</h3>
 
-If you write client side apps, chances are that you're manipulating the DOM or interacting with the many events it provides.
-
-In the case that you are adding or removing nodes, checking your ui for various expected values after manipulation, or verifying callbacks triggered by user actions on your apps UI, using fixtures may save you the time that would be otherwise spent stubbing or mocking these features or items.
+`@venus-fixture` imports HTML markup into your test page, it gives you quick access to DOM nodes for testing your client side interactions.  Importing HTML fixtures saves you the time otherwise spent stubbing or mocking the DOM or elements.
 
 * <h3>How?</h3>
 
-The `@venus-fixture` directive can be included in your annotation block within your test spec.  It takes a file path as an argument which is relative to the test spec you are running.
+Include the `@venus-fixture` directive in your venus annotation block.  The argument passed to `@venus-fixture` is a file path, it's relative to test file you're annotating.  An example of this directive is below:
+```code
+@venus-fixture ../fixtures/exampleFixture.fixture.html
+```
 
-So if your test folder had the following structure:
+The full annotation block to may look like the following:
+```code
+/**
+ * @venus-library mocha
+ * @venus-include ../lib/zepto.1.0.min.js
+ * @venus-include ../src/Silence.js
+ * @venus-fixture ../fixtures/exampleFixture.fixture.html
+ */
+```
 
+When you run your test, the markup from `exampleFixture.fixture.html` will be available on your test page.  The ability to test your DOM manipulations and callbacks to user interactions is now at your fingertips.
+
+* <h3>Examples</h3>
+
+Example test directory structure:
 ```bash
 // Example Test Folder Structure
 
@@ -25,34 +37,23 @@ So if your test folder had the following structure:
 
 ```
 
-Your annotation block to import `exampleFixture.fixture.html` into your test would look something like this:
-```code
-// Example Annotation
 
-/**
- * @venus-library mocha
- * @venus-include ../lib/zepto.1.0.min.js
- * @venus-include ../src/Silence.js
- * @venus-fixture ../fixtures/exampleFixture.fixture.html
- */
-
-```
-
-When you run your test, the markup in `exampleFixture.fixture.html` will be available on your test page.
-
-* <h3>Example</h3>
-
-<strong>You can find and run this example in the <a href="http://github.com/linkedin/venus.js">Venus.js</a> repository.</strong>
-
-The files involved in the test are listed in the venus annotation block above.  The name of the spec being run in this example is `exampleFixture.spec.js` which contains the aforementioned venus annotation.
-
-The simple contents of our HTML fixture file `exampleFixture.fixture.html`:
+The contents of our HTML fixture file `exampleFixture.fixture.html`:
 ```code
 <div id="example-fixture-container"></div>
 ```
 
+<strong>Example test</strong> uses zepto to verify that our HTML fixture has been loaded on the page:
+```code
+describe('Testing @venus-fixture', function() {
+  it('Loads our html', function() {
+    var length = $('#example-fixture-container').length;
+    expect(length).to.be(1);
+  });
+});
+```
 
-A single test snippet from `exampleFixture.spec.js` which verifies some callback information from a delegated click event:
+<strong>Example test</strong> verifies that a callback was fired by a click event, and that the arguments passed contained a specific DOM id:
 ```code
 describe('Test event delegation target', function() {
   it('Click target should equal "example-fixture-container"', function() {
@@ -61,9 +62,9 @@ describe('Test event delegation target', function() {
     document.addEventListener('click', spy, true);
     $('#example-fixture-container').trigger('click');
 
-    // Called once
+    // Callback gets called once
     expect(spy.calledOnce).to.equal(true);
-    // id is correct
+    // The expected element id was passed
     expect(spy.args[0][0].target.id).to.equal('example-fixture-container');
   });
 });

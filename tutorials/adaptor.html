@@ -27,18 +27,53 @@
   </header>
   <div id="main" role="main">
     <article>
-      <h1>How to debug failing tests</h1>
+      <h1>How to build a custom adaptor</h1>
       <hr>
-      <p>Sometimes tests will give you a useful message explaining why they failed, but there are other times where they fail or hang without providing a clue of what is going on.</p>
-<p>When you are having this issue the best way to debug the issue is to open the test in your favorite browser.</p>
-<p><a href="/images/tutorials/debugging/image1.png"><img src="/images/tutorials/debugging/image1.png" alt="Test"></a></p>
-<p>There is more happening on the browser than what we see at first glance. If you take a look at the DOM you will see an iframe with a src attribute something like /venus-core/sandbox/1, and this is where all the action happens.
-In there you can see all the libraries being loaded for your test, the file you are testing and the test code.</p>
-<p><a href="/images/tutorials/debugging/image2.png"><img src="/images/tutorials/debugging/image2.png" alt="Test"></a></p>
-<p>If you don&#39;t see your script files being loaded, this is a good indicator that something is wrong with your test. This is an example of how the iframe looked on one test were I was triggering a redirect and by doing that breaking my tests:</p>
-<p><img src="/images/tutorials/debugging/image3.png" alt="Test"></p>
-<p>Knowing this is also useful to find out why a test is failing or something is not working as expected. Since you now have access to your JS files from your developer tools you can set break points and go through the code step by step to figure out why something is failing.</p>
-<p><a href="/images/tutorials/debugging/image4.png"><img src="/images/tutorials/debugging/image4.png" alt="Test"></a></p>
+      <h2>Background</h2>
+<p>Venus uses adaptors to communicate with different test frameworks. Each adaptor normalizes the output of it&#39;s respective framework in order for Venus to process the test results.</p>
+<p>The frameworks currently supported by Venus are:</p>
+<ul>
+<li>&nbsp;&nbsp;&nbsp;- Mocha</li>
+<li>&nbsp;&nbsp;&nbsp;- Jasmine</li>
+<li>&nbsp;&nbsp;&nbsp;- QUnit</li>
+</ul>
+<p>All adaptors can be found in <code>.venus/adaptors</code></p>
+<p>Inside <code>.venus/adaptors</code>, you will find a file named <code>adaptor-template.js</code>. This file serves as the base template for all adaptors. </p>
+<h2>Example</h2>
+<p>Let&#39;s say we want to create an adaptor for a test framework named FooBar (library file is named <code>foobar.js</code>)</p>
+<p>The first step is to place <code>foobar.js</code> in <code>.venus/libraries</code></p>
+<p>Next, create a file named <code>foobar-venus.js</code> and place it in <code>.venus/adaptors</code></p>
+<p>The contents of <code>foobar-venus.js</code> should do the following:</p>
+<ul>
+<li><p>&nbsp;&nbsp;&nbsp;1. Instantiate the adaptor
+<code>function Adaptor() {};</code></p>
+</li>
+<li><p>&nbsp;&nbsp;&nbsp;2. Inherit the adaptor template
+<code>Adaptor.prototype = new AdaptorTemplate();</code></p>
+</li>
+<li><p>&nbsp;&nbsp;&nbsp;3. Override the following methods, which are defined in <code>adaptor-template.js</code>, based on the FooBar test framework:</p>
+<ul>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>start()</code></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>getTestMessage()</code></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>getTestName()</code></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>getTestStatus()</code></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>getTestStackTrace()</code></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>getTotal()</code></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>getTotalFailed()</code></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>getTotalPassed()</code></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>getTotalRuntime()</code></li>
+</ul>
+</li>
+</ul>
+<p>Finally, define the configuration for FooBar in <code>.venus/config</code>:</p>
+<pre><code>foobar: {
+  includes: [
+    &#39;libraries/foobar.js&#39;,
+    &#39;adaptors/adaptor-template.js&#39;,
+    &#39;adaptors/foobar-venus.js&#39;
+  ]
+}</code></pre>
+<p>Now you can add the Venus annotation <code>@venus-library foobar</code> at the top of any JS unit test to use the FooBar test framework with Venus</p>
 
   </article>
 </div>

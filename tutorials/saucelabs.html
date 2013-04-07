@@ -27,18 +27,15 @@
   </header>
   <div id="main" role="main">
     <article>
-      <h1>How to debug failing tests</h1>
+      <h1>How to run your tests with Sauce Labs</h1>
       <hr>
-      <p>Sometimes tests will give you a useful message explaining why they failed, but there are other times where they fail or hang without providing a clue of what is going on.</p>
-<p>When you are having this issue the best way to debug the issue is to open the test in your favorite browser.</p>
-<p><a href="/images/tutorials/debugging/image1.png"><img src="/images/tutorials/debugging/image1.png" alt="Test"></a></p>
-<p>There is more happening on the browser than what we see at first glance. If you take a look at the DOM you will see an iframe with a src attribute something like /venus-core/sandbox/1, and this is where all the action happens.
-In there you can see all the libraries being loaded for your test, the file you are testing and the test code.</p>
-<p><a href="/images/tutorials/debugging/image2.png"><img src="/images/tutorials/debugging/image2.png" alt="Test"></a></p>
-<p>If you don&#39;t see your script files being loaded, this is a good indicator that something is wrong with your test. This is an example of how the iframe looked on one test were I was triggering a redirect and by doing that breaking my tests:</p>
-<p><img src="/images/tutorials/debugging/image3.png" alt="Test"></p>
-<p>Knowing this is also useful to find out why a test is failing or something is not working as expected. Since you now have access to your JS files from your developer tools you can set break points and go through the code step by step to figure out why something is failing.</p>
-<p><a href="/images/tutorials/debugging/image4.png"><img src="/images/tutorials/debugging/image4.png" alt="Test"></a></p>
+      <p>Venus provides Sauce Labs integration so that you can run your tests remotely on their browser farms</p>
+<p>You must first configure your username and access key in lib/util/executor.js</p>
+<p>Run the following command to run your tests with Sauce Labs:</p>
+<pre><code class="lang-js">$ venus run -t tests.js -x</code></pre>
+<p>The command line option -x or --sauce-labs will specify the test to run with Sauce Labs</p>
+<p>More command line options:</p>
+<p>&nbsp;&nbsp;&nbsp;-xb, --sauce-labs-browser [browser]<br>&nbsp;&nbsp;&nbsp;-xv, --sauce-labs-version [version]<br>&nbsp;&nbsp;&nbsp;-xp, --sauce-labs-platform [platform]<br>&nbsp;&nbsp;&nbsp;-xr, --sauce-labs-server [url]<br>&nbsp;&nbsp;&nbsp;-xu, --sauce-labs-username [username]<br>&nbsp;&nbsp;&nbsp;-xa, --sauce-labs-access-key [accessKey]        </p>
 
   </article>
 </div>

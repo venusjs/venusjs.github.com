@@ -27,18 +27,67 @@
   </header>
   <div id="main" role="main">
     <article>
-      <h1>How to debug failing tests</h1>
+      <h1>Why and how to use @venus-fixture</h1>
       <hr>
-      <p>Sometimes tests will give you a useful message explaining why they failed, but there are other times where they fail or hang without providing a clue of what is going on.</p>
-<p>When you are having this issue the best way to debug the issue is to open the test in your favorite browser.</p>
-<p><a href="/images/tutorials/debugging/image1.png"><img src="/images/tutorials/debugging/image1.png" alt="Test"></a></p>
-<p>There is more happening on the browser than what we see at first glance. If you take a look at the DOM you will see an iframe with a src attribute something like /venus-core/sandbox/1, and this is where all the action happens.
-In there you can see all the libraries being loaded for your test, the file you are testing and the test code.</p>
-<p><a href="/images/tutorials/debugging/image2.png"><img src="/images/tutorials/debugging/image2.png" alt="Test"></a></p>
-<p>If you don&#39;t see your script files being loaded, this is a good indicator that something is wrong with your test. This is an example of how the iframe looked on one test were I was triggering a redirect and by doing that breaking my tests:</p>
-<p><img src="/images/tutorials/debugging/image3.png" alt="Test"></p>
-<p>Knowing this is also useful to find out why a test is failing or something is not working as expected. Since you now have access to your JS files from your developer tools you can set break points and go through the code step by step to figure out why something is failing.</p>
-<p><a href="/images/tutorials/debugging/image4.png"><img src="/images/tutorials/debugging/image4.png" alt="Test"></a></p>
+      <ul>
+<li><h3>Why?</h3>
+
+</li>
+</ul>
+<p><code>@venus-fixture</code> imports HTML markup into your test page, it gives you quick access to DOM nodes for testing your client side interactions.  Importing HTML fixtures saves you the time otherwise spent stubbing or mocking the DOM or elements.</p>
+<ul>
+<li><h3>How?</h3>
+
+</li>
+</ul>
+<p>Include the <code>@venus-fixture</code> directive in your venus annotation block.  The argument passed to <code>@venus-fixture</code> is a file path, it&#39;s relative to test file you&#39;re annotating.  An example of this directive is below:</p>
+<pre><code class="lang-code">@venus-fixture ../fixtures/exampleFixture.fixture.html</code></pre>
+<p>The full annotation block to may look like the following:</p>
+<pre><code class="lang-code">/**
+ * @venus-library mocha
+ * @venus-include ../lib/zepto.1.0.min.js
+ * @venus-include ../src/Silence.js
+ * @venus-fixture ../fixtures/exampleFixture.fixture.html
+ */</code></pre>
+<p>When you run your test, the markup from <code>exampleFixture.fixture.html</code> will be available on your test page.  The ability to test your DOM manipulations and callbacks to user interactions is now at your fingertips.</p>
+<ul>
+<li><h3>Examples</h3>
+
+</li>
+</ul>
+<p>Example test directory structure:</p>
+<pre><code class="lang-bash">// Example Test Folder Structure
+
+|-simpleFixtureExample
+  |-lib
+    |-zepto.1.0.min.js
+  |-specs
+    |-exampleFixture.spec.js
+  |-fixtures
+    |-exampleFixture.fixture.html</code></pre>
+<p>The contents of our HTML fixture file <code>exampleFixture.fixture.html</code>:</p>
+<pre><code class="lang-code">&lt;div id=&quot;example-fixture-container&quot;&gt;&lt;/div&gt;</code></pre>
+<p><strong>Example test</strong> uses zepto to verify that our HTML fixture has been loaded on the page:</p>
+<pre><code class="lang-code">describe(&#39;Testing @venus-fixture&#39;, function() {
+  it(&#39;Loads our html&#39;, function() {
+    var length = $(&#39;#example-fixture-container&#39;).length;
+    expect(length).to.be(1);
+  });
+});</code></pre>
+<p><strong>Example test</strong> verifies that a callback was fired by a click event, and that the arguments passed contained a specific DOM id:</p>
+<pre><code class="lang-code">describe(&#39;Test event delegation target&#39;, function() {
+  it(&#39;Click target should equal &quot;example-fixture-container&quot;&#39;, function() {
+    var spy = sinon.spy();
+
+    document.addEventListener(&#39;click&#39;, spy, true);
+    $(&#39;#example-fixture-container&#39;).trigger(&#39;click&#39;);
+
+    // Callback gets called once
+    expect(spy.calledOnce).to.equal(true);
+    // The expected element id was passed
+    expect(spy.args[0][0].target.id).to.equal(&#39;example-fixture-container&#39;);
+  });
+});</code></pre>
 
   </article>
 </div>

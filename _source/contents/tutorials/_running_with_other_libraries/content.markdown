@@ -1,5 +1,3 @@
-<h2>Running with Other Libraries</h2>
-<hr/>
 <p>Venus simplifies running unit tests for JavaScript. To minimize overhead, we set out to create a tool that makes it easier to work with an existing test library such as Mocha, Jasmine or QUnit.</p>
 
 <h3>Mocha</h3>

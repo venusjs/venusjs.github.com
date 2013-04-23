@@ -27,56 +27,72 @@
   </header>
   <div id="main" role="main">
     <article>
-      <h1>Venus.js 101</h1>
+      <h1>Command line interface</h1>
       <hr>
-      <p>Venus allows you to use comment-based annotations to define configurations for your unit test:</p>
-<ul>
-<li><h3>@venus-library</h3><p>Indicates the test library you wish to use. The test libraries that are currently supported are <code>mocha</code>, <code>jasmine</code> and <code>qunit</code> (Default library is Mocha)</p></li>
-<li><h3>@venus-include</h3><p>JavaScript file to include with your unit test. Use a seperate @venus-include annotation for every file you wish to include. The path is relative to the location of your test file.</p></li>
-<li><h3>@venus-fixture</h3><p>The location of the file that will include HTML on the test harness page. This is useful for including some DOM elements that your JavaScript control depends on, for example. The path is relative to the location of your test file.</p></li>
-<li><h3>@venus-template</h3><p>The location of the file that will serve as your test harness page for your unit test (Default file is <code>.venus/templates/default.tl</code>)</p></li>
-</ul>
-<h2>Creating a Unit Test</h2>
+      <p><h3>venus run</h3></p>
 <hr>
-<p>Let&#39;s say we have the following directory structure:</p>
-<pre><code class="lang-bash">|-foobar
-  |-src
-    |-foo.js
-  |-specs
-    |-foo.spec.js
-    |-foo.fixture.html</code></pre>
-<ul>
-<li><code>foo.js</code>      - Defines the talk() function</li>
-<li><code>foo.spec.js</code> - Unit test that validates the talk() function defined in <code>foo.js</code> behaves as expected</li>
-<li><code>foo.fixture.html</code> - HTML to be included when running the unit test defined in <code>foo.spec.js</code></li>
-</ul>
-<p>Below are the contents of <code>foo.spec.js</code></p>
-<pre><code class="lang-js">/**
- * @venus-library mocha
- * @venus-include ../src/foo.js
- * @venus-fixture foo.fixture.html
- */
 
-test(&#39;Foo&#39;, function() {
-  var foo    = new Foo(),
-      result = foo.talk(&#39;Hello %s, how are you doing this fine %s?&#39;, &#39;John&#39;, &#39;Monday&#39;);
+<p>Will run tests specified as an argument to the <code>--tests</code> or <code>-t</code> option.  When this command is executed, venus will look for a <code>.venus</code> config file in the current directory or otherwise traverse upwards until one is found.   If no config file is found you will recieve an error.</p>
+<p>Options:</p>
 
-  equal(result, &#39;Hello John, how are you doing this fine Monday?&#39;, &#39;Foo.talk() formats the string correctly&#39;);
-});</code></pre>
-<p>As you can see above, <code>foo.spec.js</code> does the following:</p>
-<ul>
-<li>Defines Mocha as it&#39;s test library</li>
-<li>Includes <code>foo.js</code> to instantiate a <code>Foo</code> object and invoke the talk() function</li>
-<li>Uses <code>foo.fixture.html</code> to specify HTML needed in order to run the unit test</li>
-</ul>
-<p><br/></p>
-<h2>Run a Unit Test</h2>
+<pre><code class="lang-code">-h, --help                        output usage information
+-t, --test [tests]                Comma separated string of tests to run
+-p, --port [port]                 port to run on
+-n, --phantom [path to binary]    Use phantomJS client to run browser tests
+-s, --selenium                    Use selenium client to run browser tests
+-r, --selenium-server [url]       Specify selenium server to use
+-b, --selenium-browser [browser]  Specify browser to use with selenium
+-l, --locale [locale]             Specify locale to use
+-v, --verbose                     Run in verbose mode
+-d, --debug                       Run in debug mode
+-c, --coverage                    Generate Code Coverage Report
+--require-annotations             Ignore test files lacking Venus annotations (@venus-*)</code></pre>
+<p>Basic format:</p>
+
+<pre><code class="lang-code">venus run --test [path to folder containing tests or single test file] [options]</code></pre>
+<p>Usage (Run JavaScript tests found in a folder and its subfolders in phantomjs headless browser):</p>
+
+<pre><code class="lang-code">venus run -t myproject/containing/tests --phantom</code></pre>
+<p><hr></p>
+<p><h3>venus init</h3></p>
 <hr>
-<p>Unit tests can be run from the command line using PhantomJS or locally in a browser</p>
-<p>Run unit test with PhantomJS</p>
-<pre><code class="lang-bash">venus run --test path/to/unit/test/foo.spec.js --phantom</code></pre>
-<p>Run unit test locally</p>
-<pre><code class="lang-bash">venus run --test path/to/unit/test/foo.spec.js</code></pre>
+
+<p>Generates a <code>.venus</code> project folder, with a boilerplate config file</p>
+
+<p>Options:</p>
+
+<pre><code class="lang-code">-h, --help             output usage information
+-l, --locale [locale]  Specify locale to use
+-v, --verbose          Run in verbose mode
+-d, --debug            Run in debug mode</code></pre>
+<p>Usage:</p>
+
+<pre><code class="lang-code">venus init</code></pre>
+<p>Output:</p>
+
+<pre><code class="lang-bash">|-.venus/
+  |-config
+  |-adaptors/
+  |-templates/
+  |-libraries/</code></pre>
+<p><p>Boilderplate <code>.venus/config</code> file:</p></p>
+<pre><code class="lang-code">// Configuration file for Venus
+// All paths can be relative (to the location of this config file) or absolute
+{
+  default: {},
+  libraries: {},
+  binaries: {},
+  static: {},
+  includes: {},
+  basePaths: {}
+}</code></pre>
+<p><hr></p>
+<p><h3>venus demo</h3></p>
+<hr>
+
+<p><p>Runs an example venus test using mocha and phantomjs</p></p>
+<p><p>example:</p></p>
+<pre><code class="lang-code">venus demo</code></pre>
 
   </article>
 </div>

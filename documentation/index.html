@@ -27,57 +27,12 @@
   </header>
   <div id="main" role="main">
     <article>
-      <h1>Venus.js 101</h1>
+      <h1>Reference Documentation</h1>
       <hr>
-      <p>Venus allows you to use comment-based annotations to define configurations for your unit test:</p>
-<ul>
-<li><h3>@venus-library</h3><p>Indicates the test library you wish to use. The test libraries that are currently supported are <code>mocha</code>, <code>jasmine</code> and <code>qunit</code> (Default library is Mocha)</p></li>
-<li><h3>@venus-include</h3><p>JavaScript file to include with your unit test. Use a seperate @venus-include annotation for every file you wish to include. The path is relative to the location of your test file.</p></li>
-<li><h3>@venus-fixture</h3><p>The location of the file that will include HTML on the test harness page. This is useful for including some DOM elements that your JavaScript control depends on, for example. The path is relative to the location of your test file.</p></li>
-<li><h3>@venus-template</h3><p>The location of the file that will serve as your test harness page for your unit test (Default file is <code>.venus/templates/default.tl</code>)</p></li>
+      <ul class="tutorials">
+  <li><a href="/documentation/cli">Command line interface</a></li>
+  <li><a href="/documentation/annotations">@venus-annotation</a></li>
 </ul>
-<h2>Creating a Unit Test</h2>
-<hr>
-<p>Let&#39;s say we have the following directory structure:</p>
-<pre><code class="lang-bash">|-foobar
-  |-src
-    |-foo.js
-  |-specs
-    |-foo.spec.js
-    |-foo.fixture.html</code></pre>
-<ul>
-<li><code>foo.js</code>      - Defines the talk() function</li>
-<li><code>foo.spec.js</code> - Unit test that validates the talk() function defined in <code>foo.js</code> behaves as expected</li>
-<li><code>foo.fixture.html</code> - HTML to be included when running the unit test defined in <code>foo.spec.js</code></li>
-</ul>
-<p>Below are the contents of <code>foo.spec.js</code></p>
-<pre><code class="lang-js">/**
- * @venus-library mocha
- * @venus-include ../src/foo.js
- * @venus-fixture foo.fixture.html
- */
-
-test(&#39;Foo&#39;, function() {
-  var foo    = new Foo(),
-      result = foo.talk(&#39;Hello %s, how are you doing this fine %s?&#39;, &#39;John&#39;, &#39;Monday&#39;);
-
-  equal(result, &#39;Hello John, how are you doing this fine Monday?&#39;, &#39;Foo.talk() formats the string correctly&#39;);
-});</code></pre>
-<p>As you can see above, <code>foo.spec.js</code> does the following:</p>
-<ul>
-<li>Defines Mocha as it&#39;s test library</li>
-<li>Includes <code>foo.js</code> to instantiate a <code>Foo</code> object and invoke the talk() function</li>
-<li>Uses <code>foo.fixture.html</code> to specify HTML needed in order to run the unit test</li>
-</ul>
-<p><br/></p>
-<h2>Run a Unit Test</h2>
-<hr>
-<p>Unit tests can be run from the command line using PhantomJS or locally in a browser</p>
-<p>Run unit test with PhantomJS</p>
-<pre><code class="lang-bash">venus run --test path/to/unit/test/foo.spec.js --phantom</code></pre>
-<p>Run unit test locally</p>
-<pre><code class="lang-bash">venus run --test path/to/unit/test/foo.spec.js</code></pre>
-
   </article>
 </div>
 <footer id="global-footer">

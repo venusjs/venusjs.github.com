@@ -64,8 +64,6 @@ padding:10px 0;
 }
 
 #global-footer ul {
-display:block;
-margin-top:14px;
 }
 
 #global-footer .social-actions {
@@ -109,7 +107,13 @@ margin:0;
 margin-top:20px;
 }
 
+#intro .actions .cta:hover {
+  background-color: #14D673;
+}
+
+
 #intro .actions .cta {
+  transition: background-color .6s;
 -moz-border-radius:6px;
 -moz-box-shadow:rgba(255,255,255,0.2) 0 1px 0 false true,rgba(255,255,255,0.05) 0 1px 2px;
 -ms-border-radius:6px;

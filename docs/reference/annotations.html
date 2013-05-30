@@ -1,0 +1,156 @@
+
+  <!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Annotations (@venus-*) &mdash; Venus.js 1.0.9 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.9',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Venus.js 1.0.9 documentation" href="../index.html" />
+    <link rel="next" title="Command line flags" href="command_line_flags.html" />
+    <link rel="prev" title="Using fixtures" href="../tutorials/venus_fixtures.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="command_line_flags.html" title="Command line flags"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../tutorials/venus_fixtures.html" title="Using fixtures"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="annotations-venus">
+<span id="annotations"></span><h1>Annotations (&#64;venus-<a href="#id1"><span class="problematic" id="id2">*</span></a>)<a class="headerlink" href="#annotations-venus" title="Permalink to this headline">¶</a></h1>
+<p>Venus allows you to use comment-based annotations to define configurations for your unit test:</p>
+<div class="section" id="venus-library">
+<h2>&#64;venus-library<a class="headerlink" href="#venus-library" title="Permalink to this headline">¶</a></h2>
+<p>Indicates the test library you wish to use. The test libraries that are currently supported are <tt class="docutils literal"><span class="pre">mocha</span></tt>, <tt class="docutils literal"><span class="pre">jasmine</span></tt> and <tt class="docutils literal"><span class="pre">qunit</span></tt> (Default library is Mocha)</p>
+</div>
+<div class="section" id="venus-include">
+<h2>&#64;venus-include<a class="headerlink" href="#venus-include" title="Permalink to this headline">¶</a></h2>
+<p>JavaScript file to include with your unit test. Use a seperate <tt class="docutils literal"><span class="pre">&#64;venus-include</span></tt> annotation for every file you wish to include. The path is relative to the location of your test file.</p>
+</div>
+<div class="section" id="venus-fixture">
+<h2>&#64;venus-fixture<a class="headerlink" href="#venus-fixture" title="Permalink to this headline">¶</a></h2>
+<p>The location of the file that will include HTML on the test harness page. This is useful for including some DOM elements that your JavaScript control depends on, for example. The path is relative to the location of your test file.</p>
+</div>
+<div class="section" id="venus-template">
+<h2>&#64;venus-template<a class="headerlink" href="#venus-template" title="Permalink to this headline">¶</a></h2>
+<p>The location of the file that will serve as your test harness page for your unit test <tt class="docutils literal"><span class="pre">(Default</span> <span class="pre">file</span> <span class="pre">is</span> <span class="pre">.venus/templates/default.tl)</span></tt></p>
+<p>Example:</p>
+<div class="highlight-python"><pre>/**
+ * @venus-library mocha
+ * @venus-include ../src/Greeter.js
+ * @venus-fixture ../fixtures/Greeter.html
+ * @venus-tempalte custom
+ */</pre>
+</div>
+<div class="section" id="id5">
+<h3>Annotations (&#64;venus-<a href="#id3"><span class="problematic" id="id4">*</span></a>)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <!-- <img src="../_static/logo-75.png"> -->
+
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Annotations (&#64;venus-*)</a><ul>
+<li><a class="reference internal" href="#venus-library">&#64;venus-library</a></li>
+<li><a class="reference internal" href="#venus-include">&#64;venus-include</a></li>
+<li><a class="reference internal" href="#venus-fixture">&#64;venus-fixture</a></li>
+<li><a class="reference internal" href="#venus-template">&#64;venus-template</a><ul>
+<li><a class="reference internal" href="#id5">Annotations (&#64;venus-*)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../tutorials/venus_fixtures.html"
+                        title="previous chapter">Using fixtures</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="command_line_flags.html"
+                        title="next chapter">Command line flags</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/reference/annotations.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="command_line_flags.html" title="Command line flags"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../tutorials/venus_fixtures.html" title="Using fixtures"
+             >previous</a> |</li>
+        <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, LinkedIn.
+      Last updated on May 30, 2013.
+    </div>
+  </body>
+</html>

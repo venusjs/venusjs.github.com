@@ -51,7 +51,7 @@ text-decoration:none;
 }
 
 #main {
-padding-top:58px;
+padding-top:30px;
 }
 
 #main article {
@@ -60,7 +60,6 @@ margin:20px 0;
 
 #global-footer {
 background-color:#111;
-border-top:5px solid #7daf42;
 padding:10px 0;
 }
 
@@ -78,6 +77,11 @@ background-color:#222;
 color:#CCC;
 line-height:1.6em;
 padding:30px 30px 40px;
+background-image: url('../images/logo.png');
+background-repeat: no-repeat;
+background-size: 163px;
+background-position-x: 15px;
+padding-left: 218px;
 }
 
 #intro h1,#intro h4 {
@@ -112,7 +116,7 @@ margin-top:20px;
 -o-border-radius:6px;
 -webkit-border-radius:6px;
 -webkit-box-shadow:rgba(255,255,255,0.2) 0 1px 0 false true,rgba(255,255,255,0.05) 0 1px 2px;
-background-color:#5BB75B;
+background-color:#00A651;
 background-image:linear-gradient(top,#62c462,#51a351);
 border:1px solid #bbb;
 border-color:#51a351 #51a351 #387038;
@@ -153,9 +157,9 @@ margin-right:0;
 }
 
 #quick-launch .instructions .step.active .step-number {
-background-color:#97BF68;
-border-color:#7DAF42;
-color:#FFF;
+background-color:#fff;
+border-color:#00A651;
+color:#00A651;
 }
 
 #quick-launch .instructions .step a {
@@ -229,7 +233,7 @@ width:33%;
 }
 
 #features .feature h4 {
-color:#7DAF42;
+color:#00A651;
 font-size:17.5px;
 font-weight:400;
 margin-bottom:10px;
@@ -245,7 +249,7 @@ padding-right:15px;
 }
 
 #global-footer ul li a,#quick-launch .instructions .step.active p {
-color:#7DAF42;
+color:#00A651;
 }
 
 #quick-launch h2,#features h2 {

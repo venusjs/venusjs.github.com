@@ -1,0 +1,249 @@
+
+  <!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using different testing libraries &mdash; Venus.js 1.0.9 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.9',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Venus.js 1.0.9 documentation" href="../index.html" />
+    <link rel="next" title="Using fixtures" href="venus_fixtures.html" />
+    <link rel="prev" title="Test execution environments" href="environments.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="venus_fixtures.html" title="Using fixtures"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="environments.html" title="Test execution environments"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="using-different-testing-libraries">
+<span id="testing-libraries"></span><h1>Using different testing libraries<a class="headerlink" href="#using-different-testing-libraries" title="Permalink to this headline">¶</a></h1>
+<p>Venus simplifies running unit tests for JavaScript. To minimize overhead, we set out to create a tool that makes it easier to work with an existing test library such as Mocha, Jasmine or QUnit.</p>
+<div class="section" id="mocha">
+<h2>Mocha<a class="headerlink" href="#mocha" title="Permalink to this headline">¶</a></h2>
+<p>Mocha is a feature-rich test framework that provides a wealth of features, not limited to, but including: async support, watching for slow tests, and integration with various assertion libraries. However, it doesn&#8217;t contain integration with any browsers (ex. WebKit). By simply adding Venus annotations, you can use Venus to run your tests using PhantomJS, while still being able to run them using the mocha CLI.</p>
+<p>Let&#8217;s say you have this test file, <tt class="docutils literal"><span class="pre">tests.js</span></tt>:</p>
+<div class="highlight-python"><pre>describe('Array', function() {
+  describe('#indexOf()', function() {
+    it('should return -1 when the value is not present', function() {
+      expect([1, 2, 3].indexOf(5)).to.be(-1);
+      expect([1, 2, 3].indexOf(0)).to.be(-1);
+    });
+  });
+});</pre>
+</div>
+<p>In order to make <tt class="docutils literal"><span class="pre">tests.js</span></tt> runnable in Venus, modify your file as follows:</p>
+<div class="highlight-python"><pre>/**
+ * @venus-library mocha
+ * @venus-template sandbox
+ */
+describe('Array', function() {
+  describe('#indexOf()', function() {
+    it('should return -1 when the value is not present', function() {
+      expect([1, 2, 3].indexOf(5)).to.be(-1);
+      expect([1, 2, 3].indexOf(0)).to.be(-1);
+    });
+  });
+});</pre>
+</div>
+<p>NOTE: This file uses <tt class="docutils literal"><span class="pre">expect.js</span></tt>, but can be modified to use any assertion library supported by Mocha.</p>
+<p>Now you can run your tests using Venus:</p>
+<div class="highlight-python"><pre>$ venus run -t tests.js -n
+
+info:   Serving test: http://localhost:2013/venus-core/1
+info:   executor started on localhost:2013
+info:   Phantom browser is loading http://localhost:2013/venus-core/1
+
+--------------------------------------------------------
+
+
+PhantomJS/1.7.0
+
+   Array &gt;&gt; #indexOf()
+     ✓ should return -1 when the value is not present
+
+
+✓ 1 test completed (0.01ms)</pre>
+</div>
+</div>
+<div class="section" id="jasmine">
+<h2>Jasmine<a class="headerlink" href="#jasmine" title="Permalink to this headline">¶</a></h2>
+<p>Jasmine is a behavior-driven development framework for testing JavaScript code. By default, it includes an HTML file that serves as a test runner. However, it doesn&#8217;t provide a command-line interface to run your unit tests. By simply adding Venus annotations, you can use Venus to run your tests both from the command line, while still preserving the ability to use the HTML test runner.</p>
+<p>Let&#8217;s say you have this test file, <tt class="docutils literal"><span class="pre">tests.js</span></tt>:</p>
+<div class="highlight-python"><pre>describe('A suite', function() {
+  it('contains spec with an expectation', function() {
+    expect(true).toBe(true);
+  });
+});</pre>
+</div>
+<p>In order to make <tt class="docutils literal"><span class="pre">tests.js</span></tt> runnable in Venus, modify your file as follows:</p>
+<div class="highlight-python"><pre>/**
+ * @venus-library jasmine
+ * @venus-template sandbox
+ */
+describe('A suite', function() {
+  it('contains spec with an expectation', function() {
+    expect(true).toBe(true);
+  });
+});</pre>
+</div>
+<p>Now you can run your tests using Venus:</p>
+<div class="highlight-python"><pre>$ venus run -t tests.js -n
+
+info:   Serving test: http://localhost:2013/venus-core/1
+info:   executor started on localhost:2013
+info:   Phantom browser is loading http://localhost:2013/venus-core/1
+
+--------------------------------------------------------
+
+
+PhantomJS/1.7.0
+
+   A suite
+     ✓ contains spec with an expectation
+
+
+✓ 1 test completed (0ms)</pre>
+</div>
+</div>
+<div class="section" id="qunit">
+<h2>QUnit<a class="headerlink" href="#qunit" title="Permalink to this headline">¶</a></h2>
+<p>QUnit is a JavaScript unit test suite used by jQuery, jQuery UI, and jQuery Mobile. It provides a web page interface for running your unit tests. However, it doesn&#8217;t provide a command-line interface to run your unit tests. By simply adding Venus annotations, you can use Venus to run your tests both from the command line, while still preserving the ability to use the web page interface.</p>
+<p>Let&#8217;s say you have this test file, <tt class="docutils literal"><span class="pre">tests.js</span></tt>:</p>
+<div class="highlight-python"><pre>test( "hello test", function() {
+  ok( 1 == "1", "Passed!" );
+});</pre>
+</div>
+<p>In order to make <tt class="docutils literal"><span class="pre">tests.js</span></tt> runnable in Venus, modify your file as follows:</p>
+<div class="highlight-python"><pre>/**
+ * @venus-library qunit
+ * @venus-template sandbox
+ */
+
+test( "hello test", function() {
+  ok( 1 == "1", "Passed!" );
+});</pre>
+</div>
+<p>Now you can run your tests using Venus:</p>
+<div class="highlight-python"><pre>$ venus run -t tests.js -n
+
+info:   Serving test: http://localhost:2013/venus-core/1
+info:   executor started on localhost:2013
+info:   Phantom browser is loading http://localhost:2013/venus-core/1
+
+--------------------------------------------------------
+
+
+PhantomJS/1.7.0
+
+   hello test
+     ✓ Passed!
+
+
+✓ 1 test completed (20ms)</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <!-- <img src="../_static/logo-75.png"> -->
+
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using different testing libraries</a><ul>
+<li><a class="reference internal" href="#mocha">Mocha</a></li>
+<li><a class="reference internal" href="#jasmine">Jasmine</a></li>
+<li><a class="reference internal" href="#qunit">QUnit</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="environments.html"
+                        title="previous chapter">Test execution environments</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="venus_fixtures.html"
+                        title="next chapter">Using fixtures</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/testing_libraries.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="venus_fixtures.html" title="Using fixtures"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="environments.html" title="Test execution environments"
+             >previous</a> |</li>
+        <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, LinkedIn.
+      Last updated on May 30, 2013.
+    </div>
+  </body>
+</html>

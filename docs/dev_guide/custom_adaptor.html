@@ -1,0 +1,165 @@
+
+  <!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Build a custom adaptor &mdash; Venus.js 1.0.9 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.9',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Venus.js 1.0.9 documentation" href="../index.html" />
+    <link rel="prev" title="Contribute to the project" href="contribute.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="contribute.html" title="Contribute to the project"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="build-a-custom-adaptor">
+<h1>Build a custom adaptor<a class="headerlink" href="#build-a-custom-adaptor" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Venus uses adaptors to communicate with different test libraries. Each
+adaptor normalizes the output of it&#8217;s respective framework in order for Venus to process the test results.</p>
+<p>The libraries currently supported are:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://visionmedia.github.io/mocha/">Mocha</a></li>
+<li><a class="reference external" href="http://pivotal.github.io/jasmine/">Jasmine</a></li>
+<li><a class="reference external" href="http://qunitjs.com/">QUnit</a></li>
+</ul>
+<p>All adaptors can be found in the <a class="reference external" href="https://github.com/linkedin/venus.js/tree/master/.venus/adaptors">adaptors</a> folder under the root Venus application.</p>
+<p>Inside <a class="reference external" href="https://github.com/linkedin/venus.js/tree/master/.venus/adaptors">adaptors</a>, you will find a file named
+<tt class="docutils literal"><span class="pre">adaptor-template.js</span></tt>. This file serves as the base template for all
+adaptors.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s say we want to create an adaptor for a test framework named FooBar
+(library file is named <tt class="docutils literal"><span class="pre">foobar.js</span></tt>)</p>
+<p>The first step is to place <tt class="docutils literal"><span class="pre">foobar.js</span></tt> in <a class="reference external" href="https://github.com/linkedin/venus.js/tree/master/.venus/libraries">libraries</a>.</p>
+<p>Next, create a file named <tt class="docutils literal"><span class="pre">foobar.js</span></tt> and place it in <a class="reference external" href="https://github.com/linkedin/venus.js/tree/master/.venus/adaptors">adaptors</a>.</p>
+<p>The contents of <tt class="docutils literal"><span class="pre">foobar.js</span></tt> should do the following:</p>
+<ol class="arabic simple">
+<li>Instantiate the adaptor <tt class="docutils literal"><span class="pre">function</span> <span class="pre">Adaptor()</span> <span class="pre">{};</span></tt></li>
+<li>Inherit the adaptor template
+<tt class="docutils literal"><span class="pre">Adaptor.prototype</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">AdaptorTemplate();</span></tt></li>
+<li>Override the following methods, which are defined in
+<tt class="docutils literal"><span class="pre">adaptor-template.js</span></tt>, based on the FooBar test framework:<ul>
+<li><tt class="docutils literal"><span class="pre">start()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getTestMessage()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getTestName()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getTestStatus()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getTestStackTrace()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getTotal()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getTotalFailed()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getTotalPassed()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">getTotalRuntime()</span></tt></li>
+</ul>
+</li>
+</ol>
+<p>Finally, define the configuration for FooBar in <tt class="docutils literal"><span class="pre">./config</span></tt>:</p>
+<div class="highlight-python"><pre>foobar: {
+  includes: [
+    'libraries/foobar.js',
+    'adaptors/adaptor-template.js',
+    'adaptors/foobar-.js'
+  ]
+}</pre>
+</div>
+<p>Now you can add the annotation <tt class="docutils literal"><span class="pre">&#64;venus-library</span> <span class="pre">foobar</span></tt> at the
+top of any JS unit test to use the FooBar test library with your tests.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <!-- <img src="../_static/logo-75.png"> -->
+
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Build a custom adaptor</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="contribute.html"
+                        title="previous chapter">Contribute to the project</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/dev_guide/custom_adaptor.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="contribute.html" title="Contribute to the project"
+             >previous</a> |</li>
+        <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, LinkedIn.
+      Last updated on May 30, 2013.
+    </div>
+  </body>
+</html>

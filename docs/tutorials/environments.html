@@ -1,0 +1,172 @@
+
+  <!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Test execution environments &mdash; Venus.js 1.0.9 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.9',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="Venus.js 1.0.9 documentation" href="../index.html" />
+    <link rel="next" title="Using different testing libraries" href="testing_libraries.html" />
+    <link rel="prev" title="Debugging failing tests" href="debugging_tests.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="testing_libraries.html" title="Using different testing libraries"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="debugging_tests.html" title="Debugging failing tests"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="test-execution-environments">
+<h1>Test execution environments<a class="headerlink" href="#test-execution-environments" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="local-manual">
+<h2>Local (Manual)<a class="headerlink" href="#local-manual" title="Permalink to this headline">¶</a></h2>
+<p>You can run a unit test with any browser you have installed locally on your machine</p>
+<p>Below is an example of running <tt class="docutils literal"><span class="pre">tests.js</span></tt> locally:</p>
+<div class="highlight-python"><pre>$ venus run -t tests.js</pre>
+</div>
+</div>
+<div class="section" id="phantomjs">
+<h2>PhantomJS<a class="headerlink" href="#phantomjs" title="Permalink to this headline">¶</a></h2>
+<p>PhantomJS is a headless browser that Venus leverages to seamlessly run unit tests</p>
+<p>The command line option -n or &#8211;phantom will specify the test to run with PhantomJS</p>
+<p>Below is an example of running <tt class="docutils literal"><span class="pre">tests.js</span></tt> with PhantomJS:</p>
+<div class="highlight-python"><pre>$ venus run -t tests.js -n</pre>
+</div>
+</div>
+<div class="section" id="selenium-grid">
+<h2>Selenium Grid<a class="headerlink" href="#selenium-grid" title="Permalink to this headline">¶</a></h2>
+<p>Using Selenium, you can request a VM with a given browser to execute a unit test via Venus</p>
+<p>The command line option -s or &#8211;selenium will specify the test to run with Selenium</p>
+<p>Below is an example of running <tt class="docutils literal"><span class="pre">tests.js</span></tt> on a selenium grid hosted on example.selenium.com:</p>
+<div class="highlight-python"><pre>$ venus run -t tests.js -s example.selenium.com</pre>
+</div>
+<p>Command line options:</p>
+<ul class="simple">
+<li>-s, &#8211;selenium [server url]</li>
+<li>&#8211;browser [browser|version]</li>
+</ul>
+</div>
+<div class="section" id="sauce-labs">
+<h2>Sauce Labs<a class="headerlink" href="#sauce-labs" title="Permalink to this headline">¶</a></h2>
+<p>Venus provides Sauce Labs integration so that you can run your tests remotely on their browser farms</p>
+<p>The command line option &#8211;sauce-labs will specify the test to run with Sauce Labs</p>
+<p>Run the following command to run your tests with Sauce Labs:</p>
+<div class="highlight-python"><pre>$ venus run -t tests.js --sauce-labs</pre>
+</div>
+<p>Below is an example of running <tt class="docutils literal"><span class="pre">tests.js</span></tt> on a Sauce Labs with Firefox 20:</p>
+<div class="highlight-python"><pre>$ venus run -t tests.js --sauce-labs --browser "Firefox|20"</pre>
+</div>
+<p>Command line options:</p>
+<ul class="simple">
+<li>&#8211;sauce-labs [server url]</li>
+<li>&#8211;browser [browser|version]</li>
+<li>&#8211;platform [platform]</li>
+<li>&#8211;username [username]</li>
+<li>&#8211;access-key [accessKey]</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <!-- <img src="../_static/logo-75.png"> -->
+
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Test execution environments</a><ul>
+<li><a class="reference internal" href="#local-manual">Local (Manual)</a></li>
+<li><a class="reference internal" href="#phantomjs">PhantomJS</a></li>
+<li><a class="reference internal" href="#selenium-grid">Selenium Grid</a></li>
+<li><a class="reference internal" href="#sauce-labs">Sauce Labs</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="debugging_tests.html"
+                        title="previous chapter">Debugging failing tests</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="testing_libraries.html"
+                        title="next chapter">Using different testing libraries</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/environments.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="testing_libraries.html" title="Using different testing libraries"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="debugging_tests.html" title="Debugging failing tests"
+             >previous</a> |</li>
+        <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, LinkedIn.
+      Last updated on May 30, 2013.
+    </div>
+  </body>
+</html>

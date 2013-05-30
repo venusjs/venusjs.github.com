@@ -57,30 +57,19 @@
 <h2>venus run<a class="headerlink" href="#venus-run" title="Permalink to this headline">¶</a></h2>
 <p>Run tests specified as an argument to the -t or &#8211;test option. When this command is executed, venus will look for a <cite>.venus</cite> config file in the current directory or otherwise traverse upwards until one is found. If no config file is found you will recieve an error.</p>
 <p>Options:</p>
-<div class="highlight-python"><pre>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</pre>
+<div class="highlight-python"><pre>-h, --help                        output usage information
+-t, --test [tests]                Comma separated string of tests to run
+-p, --port [port]                 port to run on
+-n, --phantom [path to binary]    Use phantomJS client to run browser tests
+-s, --selenium                    Use selenium client to run browser tests
+-r, --selenium-server [url]       Specify selenium server to use
+-b, --selenium-browser [browser]  Specify browser to use with selenium
+-l, --locale [locale]             Specify locale to use
+-v, --verbose                     Run in verbose mode
+-d, --debug                       Run in debug mode
+-c, --coverage                    Generate Code Coverage Report
+--require-annotations             Ignore test files lacking Venus annotations (@venus-*)</pre>
 </div>
-<blockquote>
-<div><table class="docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group">
-<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
-<td>output usage information</td></tr>
-</tbody>
-</table>
-<p>-t, &#8211;test [tests]                Comma separated string of tests to run
--p, &#8211;port [port]                 port to run on
--n, &#8211;phantom [path to binary]    Use phantomJS client to run browser tests
--s, &#8211;selenium                    Use selenium client to run browser tests
--r, &#8211;selenium-server [url]       Specify selenium server to use
--b, &#8211;selenium-browser [browser]  Specify browser to use with selenium
--l, &#8211;locale [locale]             Specify locale to use
--v, &#8211;verbose                     Run in verbose mode
--d, &#8211;debug                       Run in debug mode
--c, &#8211;coverage                    Generate Code Coverage Report
-&#8211;require-annotations             Ignore test files lacking Venus annotations (&#64;venus-<a href="#id2"><span class="problematic" id="id3">*</span></a>)</p>
-</div></blockquote>
 <p>Basic format:</p>
 <div class="highlight-python"><pre>venus run --test [path to folder containing tests or single test file] [options]</pre>
 </div>

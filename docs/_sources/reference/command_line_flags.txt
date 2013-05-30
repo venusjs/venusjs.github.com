@@ -10,10 +10,8 @@ venus run
 Run tests specified as an argument to the -t or --test option. When this command is executed, venus will look for a `.venus` config file in the current directory or otherwise traverse upwards until one is found. If no config file is found you will recieve an error.
 
 Options:
-
 ::
 
-<<<<<<< HEAD
   -h, --help                        output usage information
   -t, --test [tests]                Comma separated string of tests to run
   -p, --port [port]                 port to run on

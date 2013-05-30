@@ -38,8 +38,3 @@ Example::
    * @venus-fixture ../fixtures/Greeter.html
    * @venus-tempalte custom
    */
-
-=======
-***************
-Annotations (@venus-*)
-***************

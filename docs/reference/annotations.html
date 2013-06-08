@@ -27,7 +27,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="top" title="Venus.js 1.0.9 documentation" href="../index.html" />
     <link rel="next" title="Command line flags" href="command_line_flags.html" />
-    <link rel="prev" title="Using fixtures" href="../tutorials/venus_fixtures.html" /> 
+    <link rel="prev" title="VIM Integration" href="../tutorials/venus_with_vim.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,7 +40,7 @@
           <a href="command_line_flags.html" title="Command line flags"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../tutorials/venus_fixtures.html" title="Using fixtures"
+          <a href="../tutorials/venus_with_vim.html" title="VIM Integration"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
       </ul>
@@ -61,6 +61,34 @@
 <div class="section" id="venus-include">
 <h2>&#64;venus-include<a class="headerlink" href="#venus-include" title="Permalink to this headline">¶</a></h2>
 <p>JavaScript file to include with your unit test. Use a seperate <tt class="docutils literal"><span class="pre">&#64;venus-include</span></tt> annotation for every file you wish to include. The path is relative to the location of your test file.</p>
+</div>
+<div class="section" id="venus-include-group">
+<h2>&#64;venus-include-group<a class="headerlink" href="#venus-include-group" title="Permalink to this headline">¶</a></h2>
+<p>Includes the given include group. An include group is a set of JavaScript files to include, defined in the Venus config.</p>
+<p>For example, let&#8217;s say we want to include a group named <tt class="docutils literal"><span class="pre">groupA</span></tt>, which will include fileA.js and fileB.js:</p>
+<div class="highlight-python"><pre>/**
+ * @venus-include-group groupA
+ */</pre>
+</div>
+<p>But before we can actually use that annotation, we need to update our Venus config to define what files are included with <tt class="docutils literal"><span class="pre">groupA</span></tt>:</p>
+<div class="highlight-python"><pre>{
+  libraries: {
+    ...
+  },
+
+  // Include groups
+  includes: {
+    groupA: [
+        'fileA.js',
+        'fileB.js'
+    ],
+    groupB: [
+      ...
+    ]
+  },
+      ...
+}</pre>
+</div>
 </div>
 <div class="section" id="venus-fixture">
 <h2>&#64;venus-fixture<a class="headerlink" href="#venus-fixture" title="Permalink to this headline">¶</a></h2>
@@ -93,6 +121,7 @@
 <li><a class="reference internal" href="#">Annotations (&#64;venus-*)</a><ul>
 <li><a class="reference internal" href="#venus-library">&#64;venus-library</a></li>
 <li><a class="reference internal" href="#venus-include">&#64;venus-include</a></li>
+<li><a class="reference internal" href="#venus-include-group">&#64;venus-include-group</a></li>
 <li><a class="reference internal" href="#venus-fixture">&#64;venus-fixture</a></li>
 <li><a class="reference internal" href="#venus-template">&#64;venus-template</a></li>
 </ul>
@@ -100,8 +129,8 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../tutorials/venus_fixtures.html"
-                        title="previous chapter">Using fixtures</a></p>
+  <p class="topless"><a href="../tutorials/venus_with_vim.html"
+                        title="previous chapter">VIM Integration</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="command_line_flags.html"
                         title="next chapter">Command line flags</a></p>
@@ -137,14 +166,14 @@
           <a href="command_line_flags.html" title="Command line flags"
              >next</a> |</li>
         <li class="right" >
-          <a href="../tutorials/venus_fixtures.html" title="Using fixtures"
+          <a href="../tutorials/venus_with_vim.html" title="VIM Integration"
              >previous</a> |</li>
         <li><a href="../index.html">Venus.js documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2013, LinkedIn.
-      Last updated on May 30, 2013.
+      Last updated on Jun 08, 2013.
     </div>
   </body>
 </html>

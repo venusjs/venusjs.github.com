@@ -18,6 +18,38 @@ Indicates the test library you wish to use. The test libraries that are currentl
 
 JavaScript file to include with your unit test. Use a seperate ``@venus-include`` annotation for every file you wish to include. The path is relative to the location of your test file.
 
+--------------------
+@venus-include-group
+--------------------
+
+Includes the given include group. An include group is a set of JavaScript files to include, defined in the Venus config.
+
+For example, let's say we want to include a group named ``groupA``, which will include fileA.js and fileB.js::
+	
+  /**
+   * @venus-include-group groupA
+   */
+
+But before we can actually use that annotation, we need to update our Venus config to define what files are included with ``groupA``::
+
+  {
+    libraries: {
+      ...  
+    },
+
+    // Include groups
+    includes: {
+      groupA: [
+          'fileA.js',
+          'fileB.js'
+      ],
+      groupB: [
+        ...
+      ]
+    },
+  	...                                                                                                                                                                                                                                              
+  }
+
 --------------
 @venus-fixture
 --------------
